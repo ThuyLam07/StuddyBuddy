@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>StudyBuddy - WebRTC Simple SDP Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+</head>
+<body>
+
+    <div id="intro-container">
+        <h2>WebRTC: Passing SDP Manually Without Signaling</h2>
+        <img width="100%" src="WebRTC SDP Gif.gif" alt="WebRTC SDP Handshake Demo"/>
+        <p><b>Instructions:</b> Open two browser tabs side by side. Follow these steps to pass the SDP offer and answer. Each tab will represent a user:</p>
+        <ul>
+            <li><b>User 1</b> (Tab 1)</li>
+            <li><b>User 2</b> (Tab 2)</li>
+        </ul>
+        <a href="https://github.com/divanov11/WebRTC-Simple-SDP-Handshake-Demo/" target="_blank"><b>Source Code</b></a>
+    </div>
+
+    <div id="videos">
+        <video class="video-player" id="user-1" autoplay playsinline></video>
+        <video class="video-player" id="user-2" autoplay playsinline></video>
+    </div>
+
+    <div class="step">
+        <p><strong>Step 1:</strong> User 1, click "Create Offer" to generate an SDP offer. Then, copy the offer from the text area below and share it with User 2.</p>
+        <button id="create-offer">Create Offer</button>
+        <label>SDP OFFER:</label>
+        <textarea id="offer-sdp" placeholder="Generated SDP offer appears here..."></textarea>
+        <button onclick="copyText('offer-sdp')">Copy Offer</button>
+    </div>
+
+    <div class="step">
+        <p><strong>Step 2:</strong> User 2, paste the SDP offer from User 1 into the text area above. Then click "Create Answer" to generate an SDP answer. Copy the answer and share it with User 1.</p>
+        <button id="create-answer">Create Answer</button>
+        <label>SDP ANSWER:</label>
+        <textarea id="answer-sdp" placeholder="Generated SDP answer appears here..."></textarea>
+        <button onclick="copyText('answer-sdp')">Copy Answer</button>
+    </div>
+
+    <div class="step">
+        <p><strong>Step 3:</strong> User 1, paste the SDP answer from User 2 into the text area above and click "Add Answer" to complete the connection.</p>
+        <button id="add-answer">Add Answer</button>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        // Copy text from textarea
+        function copyText(elementId) {
+            const textarea = document.getElementById(elementId);
+            textarea.select();
+            textarea.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand("copy");
+            alert("Text copied to clipboard");
+        }
+    </script>
+</body>
+</html>
